@@ -52,7 +52,10 @@ module GIMLR
       when TYPES[2]
         if line[2..-1]
           result[var] ||= []
-          result[var] += line.gsub('\, ', '\,\ ').split(', ').map { |it| it.gsub('\,\ ', ', ').chomp }
+          result[var] += line.
+            gsub('\, ', '\,\ ').
+            split(', ').
+            map { |it| it.gsub('\,\ ', ', ').chomp }
         end
       else
         if line[2..-1]
