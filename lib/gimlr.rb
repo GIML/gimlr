@@ -6,31 +6,28 @@ module GIMLR
   COMMENT_CHAR = '#'.freeze
   LIST_NEW_LINE_CHAR = '-'.freeze
 
-  def parse(content)
+  def parse_string(content)
+    parse content
+  end
+
+  def parse_file(file_path)
+    File.open(file_path, 'r') do |f|
+      parse f
+    end
+  end
+
+  private
+
+  def parse(enum)
     result = {}
     var = nil
     var_type = nil
-    content.each_line do |line|
+    enum.each_line do |line|
       var, var_type, result = parse_line line, result, var, var_type
     end
 
     result
   end
-
-  def parse_file(file_path)
-    result = {}
-    var = nil
-    var_type = nil
-    File.open(file_path, 'r') do |f|
-      f.each_line do |line|
-        var, var_type, result = parse_line line, result, var, var_type
-      end
-    end
-
-    result
-  end
-
-  private
 
   def parse_line(line, result, var, var_type)
     return var, var_type, result if line.start_with? COMMENT_CHAR

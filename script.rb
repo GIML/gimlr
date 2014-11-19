@@ -8,6 +8,8 @@ path = File.expand_path('../test/test_file.giml', __FILE__)
 
 path2 = File.expand_path('../test/test_file.yaml', __FILE__)
 
+#puts GIMLR.parse_file(path)
+
 Benchmark.ips do |x|
   x.config(time: 10, warmup: 5)
   x.report('gimlr') { GIMLR.parse_file(path) }
