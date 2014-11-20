@@ -54,13 +54,16 @@ Big files (~43k lines - just replicated data with same structure as test/test_fi
 
 ```
 Calculating -------------------------------------
+                json     1.000  i/100ms
                gimlr     1.000  i/100ms
                 yaml     1.000  i/100ms
 -------------------------------------------------
+                json     43.129  (± 8.7%) i/s -    2136.000
                gimlr     17.822  (±11.2%) i/s -    883.000
                 yaml      3.536  (± 0.0%) i/s -    177.000
 
 Comparison:
+                json:       43.1 i/s - 2.42x faster
                gimlr:       17.8 i/s
                 yaml:        3.5 i/s - 5.04x slower
 ```

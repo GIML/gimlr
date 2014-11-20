@@ -15,11 +15,11 @@ toml = File.expand_path('../test_file.toml', __FILE__)
 json = File.expand_path('../test_file.json', __FILE__)
 
 Benchmark.ips do |x|
-  x.config(time: 10, warmup: 5)
+  x.config(time: 100, warmup: 50)
   content = File.read(json).freeze
   content1 = File.read(giml).freeze
   x.report('json') { JSON.parse(content) }
-  x.report('gimlr') { Gimlr.parse_file(content1) }
+  x.report('gimlr') { Gimlr.parse_string(content1) }
   #x.report('yaml') { YAML.load_file(yaml) }
   #x.report('toml') { TOML.load_file(toml) }
 
