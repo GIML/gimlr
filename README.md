@@ -2,6 +2,25 @@
 
 Ruby parser for GIML.
 
+## Install
+
+```bash
+$: gem install gimlr
+```
+
+Or in `Gemfile`
+
+```ruby
+gem 'gimlr'
+```
+
+## Usage
+
+```ruby
+Gimlr.parse_string ":num: num_var\n1234" # => { "num_var" => 1234 }
+Gimlr.parse_file file_path
+```
+
 ## Benchmarks
 
 Small files (which in test folder):
