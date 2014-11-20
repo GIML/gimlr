@@ -1,6 +1,6 @@
 # gimlr
 
-Ruby parser for GIML.
+Ruby parser for [GIML](https://github.com/gazay/giml).
 
 ## Install
 
