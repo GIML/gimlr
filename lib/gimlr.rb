@@ -1,4 +1,4 @@
-module GIMLR
+module Gimlr
   extend self
 
   TYPES = [':text:', ':num:', ':list:', ':vlist:'].freeze
