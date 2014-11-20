@@ -27,15 +27,27 @@ Small files (which in test folder):
 
 ```
 Calculating -------------------------------------
+                json     8.035k i/100ms
                gimlr     1.487k i/100ms
                 yaml   541.000  i/100ms
+             toml-rb    73.000  i/100ms
+               tomlp    42.000  i/100ms
+                toml    12.000  i/100ms
 -------------------------------------------------
+                json     88.547k (± 2.3%) i/s -    885.206k
                gimlr     15.244k (± 3.7%) i/s -    153.161k
                 yaml      5.777k (± 5.1%) i/s -     57.887k
+             toml-rb    726.229  (± 3.7%) i/s -      7.300k
+               tomlp    422.652  (± 6.2%) i/s -      4.242k
+                toml    128.168  (± 3.9%) i/s -      1.284k
 
 Comparison:
+                json:    88547.4 i/s - 5.82x faster
                gimlr:    15244.1 i/s
                 yaml:     5776.5 i/s - 2.64x slower
+             toml-rb:      726.2 i/s - 21.40x slower
+               tomlp:      422.7 i/s - 35.09x slower
+                toml:      128.2 i/s - 115.72x slower
 ```
 
 Big files (~43k lines - just replicated data with same structure as test/test_files)

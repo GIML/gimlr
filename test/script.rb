@@ -3,17 +3,25 @@ require 'yaml'
 require 'byebug'
 require 'benchmark/ips'
 require 'ruby-prof'
+require 'toml'
+require 'json'
 
-path = File.expand_path('../test_file.giml', __FILE__)
+giml = File.expand_path('../test_file.giml', __FILE__)
 
-path2 = File.expand_path('../test_file.yaml', __FILE__)
+yaml = File.expand_path('../test_file.yaml', __FILE__)
 
-#puts GIMLR.parse_file(path)
+toml = File.expand_path('../test_file.toml', __FILE__)
+
+json = File.expand_path('../test_file.json', __FILE__)
 
 Benchmark.ips do |x|
   x.config(time: 10, warmup: 5)
-  x.report('gimlr') { Gimlr.parse_file(path) }
-  x.report('yaml') { YAML.load_file(path2) }
+  content = File.read(json).freeze
+  content1 = File.read(giml).freeze
+  x.report('json') { JSON.parse(content) }
+  x.report('gimlr') { Gimlr.parse_file(content1) }
+  #x.report('yaml') { YAML.load_file(yaml) }
+  #x.report('toml') { TOML.load_file(toml) }
 
   x.compare!
 end
