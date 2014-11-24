@@ -1,6 +1,7 @@
-require 'helper'
+require 'minitest/autorun'
+require 'gimlr'
 
-class TestGimlr < MiniTest::Test
+class TestGimlr < Minitest::Unit::TestCase
   def test_gimlr_parse_integer
     expected = { 'num_var' => 12 }
     assert_equal expected, Gimlr.parse_string(":num: num_var\n12")
@@ -40,6 +41,24 @@ class TestGimlr < MiniTest::Test
   def test_gimlr_parse_properly_handle_ending_line
     expected = { 'list' => %w[a b c] }
     data = ":list: list\na, b, c\n"
+    assert_equal expected, Gimlr.parse_string(data)
+  end
+
+  def test_gimlr_parse_list_properly_handle_beginning_and_ending_line
+    expected = { 'list' => %w[a b c] }
+    data = ":list: list\n\na, b, c\n\n"
+    assert_equal expected, Gimlr.parse_string(data)
+  end
+
+  def test_gimlr_parse_list_properly_handle_ending_line_comma
+    expected = { 'list' => %w[a b c d e f] }
+    data = ":list: list\na, b, c,\nd, e, f,\n"
+    assert_equal expected, Gimlr.parse_string(data)
+  end
+
+  def test_gimlr_parse_text_properly_handle_beginning_and_ending_line
+    expected = { 'text' => "this is\ntext" }
+    data = ":text: text\n\nthis is\ntext\n\n"
     assert_equal expected, Gimlr.parse_string(data)
   end
 
