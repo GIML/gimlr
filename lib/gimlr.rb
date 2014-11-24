@@ -25,6 +25,7 @@ module Gimlr
     enum.each_line do |line|
       var, var_type, result = parse_line line, result, var, var_type
     end
+    result.each { |k,v| result[k] = v.strip if v.is_a?(String) }
 
     result
   end
@@ -53,6 +54,10 @@ module Gimlr
             gsub('\, ', '\,\ ').
             split(', ').
             map { |it| it.gsub('\,\ ', ', ').chomp }
+          if result[var].last.end_with?(',') && !result[var].last.end_with?('\,')
+            last = result[var].pop
+            result[var] << last[0..-2]
+          end
         end
       else
         if line[2..-1]

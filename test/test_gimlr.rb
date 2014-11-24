@@ -59,6 +59,7 @@ class TestGimlr < Minitest::Unit::TestCase
   def test_gimlr_parse_text_properly_handle_beginning_and_ending_line
     expected = { 'text' => "this is\ntext" }
     data = ":text: text\n\nthis is\ntext\n\n"
+    puts Gimlr.parse_string(data)
     assert_equal expected, Gimlr.parse_string(data)
   end
 
@@ -70,7 +71,7 @@ class TestGimlr < Minitest::Unit::TestCase
 
   def test_gimlr_parse_file
     expected = {
-      'this_is_text' => "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text\nSome text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text\n\n",
+      'this_is_text' => "Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text\nSome text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text Some text",
       'this_is_num' => 12345,
       'this_another_num' => 123.234,
       'this_is_array' => %w[1 2 3 4 5 1 2 3 4 5],
