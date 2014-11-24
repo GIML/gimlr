@@ -1,4 +1,5 @@
 # gimlr
+[![Build Status](https://secure.travis-ci.org/gazay/gimlr.png)](http://travis-ci.org/gazay/gimlr)
 
 Ruby parser for [GIML](https://github.com/gazay/giml).
 
