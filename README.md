@@ -1,7 +1,7 @@
 # gimlr
-[![Build Status](https://secure.travis-ci.org/gazay/gimlr.png)](http://travis-ci.org/gazay/gimlr)
+[![Build Status](https://secure.travis-ci.org/GIML/gimlr.png)](http://travis-ci.org/GIML/gimlr)
 
-Ruby parser for [GIML](https://github.com/gazay/giml).
+Ruby parser for [GIML](https://github.com/GIML/giml).
 
 <a href="https://evilmartians.com/?utm_source=gimlr">
 <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54">
