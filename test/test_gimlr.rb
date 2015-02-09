@@ -59,7 +59,6 @@ class TestGimlr < Minitest::Unit::TestCase
   def test_gimlr_parse_text_properly_handle_beginning_and_ending_line
     expected = { 'text' => "this is\ntext" }
     data = ":text: text\n\nthis is\ntext\n\n"
-    puts Gimlr.parse_string(data)
     assert_equal expected, Gimlr.parse_string(data)
   end
 
