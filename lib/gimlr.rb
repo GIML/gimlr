@@ -37,39 +37,55 @@ module Gimlr
     elsif var
       case var_type
       when TYPES[0]
-        result[var] ||= ''
-        result[var] << line
+        parse_text(line, var, result)
       when TYPES[1]
-        if line.chomp != ''
-          if line =~ /\./
-            result[var] = line.to_f
-          else
-            result[var] = line.to_i
-          end
-        end
+        parse_num(line, var, result)
       when TYPES[2]
-        if line[2..-1]
-          result[var] ||= []
-          result[var] += line.
-            gsub('\, ', '\,\ ').
-            split(', ').
-            map { |it| it.gsub('\,\ ', ', ').chomp }
-          if result[var].last.end_with?(',') && !result[var].last.end_with?('\,')
-            last = result[var].pop
-            result[var] << last[0..-2]
-          end
-        end
+        parse_list(line, var, result)
       else
-        if line[2..-1]
-          result[var] ||= []
-          if line.start_with? LIST_NEW_LINE_CHAR
-            result[var] << line[2..-1].chomp
-          end
-        end
+        parse_vlist(line, var, result)
       end
     end
 
     [var, var_type, result]
+  end
+
+  def parse_text(line, var, result)
+    result[var] ||= ''
+    result[var] << line
+  end
+
+  def parse_num(line, var, result)
+    if line.chomp != ''
+      if line =~ /\./
+        result[var] = line.to_f
+      else
+        result[var] = line.to_i
+      end
+    end
+  end
+
+  def parse_list(line, var, result)
+    if line[2..-1]
+      result[var] ||= []
+      result[var] += line.
+        gsub('\, ', '\,\ ').
+        split(', ').
+        map { |it| it.gsub('\,\ ', ', ').chomp }
+      if result[var].last.end_with?(',') && !result[var].last.end_with?('\,')
+        last = result[var].pop
+        result[var] << last[0..-2]
+      end
+    end
+  end
+
+  def parse_vlist(line, var, result)
+    if line[2..-1]
+      result[var] ||= []
+      if line.start_with? LIST_NEW_LINE_CHAR
+        result[var] << line[2..-1].chomp
+      end
+    end
   end
 
 end
